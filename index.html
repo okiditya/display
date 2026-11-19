@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Ruang Kelas - PT LPP Agro Nusantara</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono / Orbitron untuk jam digital -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        digital: ['"Orbitron"', 'monospace'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#030812',
+                            900: '#061021',
+                            800: '#0b1c38',
+                            700: '#112952',
+                        },
+                        cyber: {
+                            cyan: '#00f0ff',
+                            blue: '#2563eb',
+                            glow: '#38bdf8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Latar Belakang Dark Blue Teknologi dengan Grid & Efek Cahaya */
+        body {
+            background-color: #030812;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(37, 99, 235, 0.14) 0%, transparent 45%),
+                linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Card Teknologi */
+        .tech-glass {
+            background: linear-gradient(145deg, rgba(11, 28, 56, 0.78), rgba(6, 16, 33, 0.88));
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .tech-glass-highlight {
+            background: linear-gradient(135deg, rgba(14, 116, 144, 0.22), rgba(11, 28, 56, 0.85));
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.12), inset 0 1px 0 0 rgba(0, 240, 255, 0.2);
+        }
+
+        /* Efek Sudut Siku Teknologi */
+        .corner-accent {
+            position: relative;
+        }
+        .corner-accent::before, .corner-accent::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-color: #00f0ff;
+            pointer-events: none;
+        }
+        .corner-accent::before {
+            top: -1px;
+            left: -1px;
+            border-top: 2px solid #00f0ff;
+            border-left: 2px solid #00f0ff;
+            border-top-left-radius: 1rem;
+        }
+        .corner-accent::after {
+            bottom: -1px;
+            right: -1px;
+            border-bottom: 2px solid #00f0ff;
+            border-right: 2px solid #00f0ff;
+            border-bottom-right-radius: 1rem;
+        }
+
+        /* Animasi Panah Penunjuk Arah */
+        @keyframes pulseArrow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.65));
+            }
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 22px rgba(0, 240, 255, 0.95));
+            }
+        }
+
+        @keyframes floatDirectional {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(var(--tx, 0px), var(--ty, -6px)); }
+        }
+
+        .arrow-glow-box {
+            background: radial-gradient(circle at center, rgba(0, 240, 255, 0.22) 0%, rgba(15, 23, 42, 0.6) 75%);
+            border: 1.5px solid rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+        }
+
+        .animate-arrow-svg {
+            animation: pulseArrow 2s infinite ease-in-out;
+        }
+
+        /* Running Text / Marquee */
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marqueeScroll var(--marquee-duration, 28s) linear infinite;
+        }
+
+        .marquee-wrapper:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Custom Scrollbar untuk Panel Pengaturan */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #061021;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
+
+    <!-- ==================== HEADER UTAMA ==================== -->
+    <header class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2 z-10">
+        <div class="tech-glass corner-accent rounded-2xl p-4 sm:p-5 flex flex-col xl:flex-row items-center justify-between gap-4">
+            
+            <!-- Identitas Perusahaan & Judul Papan Informasi -->
+            <div class="flex items-center gap-4 w-full xl:w-auto justify-center xl:justify-start text-center sm:text-left">
+                <!-- Logo Korporat Agroteknologi SVG -->
+                <div class="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-700/40 border border-cyan-400/50 flex items-center justify-center shadow-[0_0_20px_rgba(0,240,255,0.2)]">
+                    <svg class="w-9 h-9 sm:w-10 sm:h-10 text-cyan-300" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4L42 14V34L24 44L6 34V14L24 4Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M24 4V44" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
+                        <path d="M15 27C15 20.5 21 15 29 15C29 23 23.5 29 17 29" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 32L23 24" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="29" cy="15" r="2.5" fill="#00f0ff"/>
+                    </svg>
+                </div>
+
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs sm:text-sm font-bold tracking-widest uppercase mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>DIGITAL SIGNAGE • WAYFINDING SYSTEM</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,240,255,0.25)]">
+                        INFORMASI RUANG KELAS
+                    </h1>
+                    <p class="text-sm sm:text-base lg:text-lg font-bold tracking-wider text-cyan-400 uppercase">
+                        PT LPP AGRO NUSANTARA
+                    </p>
+                </div>
+            </div>
+
+            <!-- Widget Cuaca & Jam/Tanggal Real-time -->
+            <div class="flex flex-wrap sm:flex-nowrap items-center justify-center xl:justify-end gap-3 sm:gap-4 w-full xl:w-auto">
+                
+                <!-- Widget Cuaca (Weather) -->
+                <div id="weatherWidget" class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl bg-navy-900/90 border border-sky-400/25 shadow-inner min-w-[220px] sm:min-w-[245px]">
+                    <div id="weatherIconContainer" class="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-400/30 flex items-center justify-center text-cyan-300 shrink-0">
+                        <!-- Icon Cuaca Dinamis -->
+                        <svg class="w-8 h-8 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="4" fill="currentColor" fill-opacity="0.3"/>
+                            <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
+                        </svg>
+                    </div>
+                    <div class="leading-tight">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-cyan-300 uppercase tracking-wider">
+                            <svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span id="weatherLocation" class="truncate max-w-[130px]">Yogyakarta</span>
+                        </div>
+                        <div class="flex items-baseline gap-2 mt-0.5">
+                            <span id="weatherTemp" class="text-2xl sm:text-3xl font-extrabold text-white">29°C</span>
+                            <span id="weatherHumidity" class="text-xs text-sky-300/80 font-medium">RH 72%</span>
+                        </div>
+                        <div id="weatherDesc" class="text-xs text-slate-300 font-medium capitalize">Cerah Berawan</div>
+                    </div>
+                </div>
+
+                <!-- Widget Jam & Tanggal Visibilitas Tinggi -->
+                <div class="flex items-center gap-3.5 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-950/90 to-navy-900/95 border border-cyan-400/35 shadow-inner">
+                    <div class="text-right">
+                        <div id="liveClock" class="font-digital text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-wider text-cyan-300 drop-shadow-[0_0_12px_rgba(0,240,255,0.45)]">
+                            00:00:00
+                        </div>
+                        <div id="liveDate" class="text-xs sm:text-sm lg:text-base font-bold text-slate-100 tracking-wide mt-0.5">
+                        Memuat Tanggal...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Kontrol Utama: Selalu Tampil Jelas & Mencolok -->
+            <div id="quickControls" class="flex items-center gap-2.5 shrink-0">
+                <button onclick="toggleSettingsModal(true)" title="Buka Pengaturan Ruangan (Tekan S)" class="px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 border border-cyan-200/70 shadow-[0_0_22px_rgba(0,240,255,0.45)] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2 font-extrabold text-sm sm:text-base tracking-wide cursor-pointer">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span>Atur Ruangan</span>
+                </button>
+
+                <button onclick="toggleFullscreen()" title="Mode Layar Penuh / TV Display" class="px-3.5 py-3 rounded-xl bg-navy-800 hover:bg-blue-700/60 text-cyan-200 border border-cyan-400/50 shadow-[0_0_15px_rgba(56,189,248,0.2)] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2 font-bold text-sm cursor-pointer">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                    </svg>
+                    <span class="hidden sm:inline">Layar Penuh</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+    <!-- ==================== KONTEN UTAMA (PETUNJUK RUANG KELAS) ==================== -->
+    <main class="flex-1 w-full px-4 sm:px-6 lg:px-8 py-3 flex flex-col justify-center">
+        <!-- Container Kartu Ruang Kelas Dinamis -->
+        <div id="roomsDisplayContainer" class="w-full max-w-[1600px] mx-auto grid grid-cols-1 gap-5">
+            <!-- Kartu akan dirender secara dinamis oleh JavaScript -->
+        </div>
+    </main>
+
+    <!-- ==================== FOOTER RUNNING TEXT ==================== -->
+    <footer class="w-full px-4 sm:px-6 lg:px-8 pb-4 pt-2 z-10">
+        <div class="tech-glass rounded-2xl overflow-hidden flex items-center border border-cyan-400/35 shadow-[0_0_25px_rgba(0,240,255,0.12)]">
+            <!-- Badge Label Running Text -->
+            <div class="shrink-0 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold px-4 sm:px-6 py-3 sm:py-3.5 text-xs sm:text-sm lg:text-base tracking-wider uppercase flex items-center gap-2 shadow-lg z-10">
+                <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                </svg>
+                <span>INFO TERKINI</span>
+            </div>
+
+            <!-- Area Teks Berjalan -->
+            <div class="marquee-wrapper py-2.5 sm:py-3 px-4 bg-navy-950/60">
+                <div id="marqueeTrack" class="marquee-track text-base sm:text-lg lg:text-xl font-semibold text-cyan-100 tracking-wide">
+                    <!-- Konten running text diisi via JS -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL PANEL PENGATURAN INTERAKTIF ==================== -->
+    <div id="settingsModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md transition-opacity">
+        <div class="tech-glass border-cyan-400/50 rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-cyan-500/20 flex items-center justify-between bg-navy-900/90">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-white">Pengaturan Papan Informasi Ruang Kelas</h2>
+                        <p class="text-xs text-cyan-300/80">Ubah jadwal ruang kelas, nama pelatihan, arah panah, lokasi cuaca, dan running text.</p>
+                    </div>
+                </div>
+                <button onclick="toggleSettingsModal(false)" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto space-y-6">
+                
+                <!-- Bagian 1: Daftar Ruang Kelas & Pelatihan Aktif -->
+                <div class="space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                            <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wider">1. Daftar Ruang Kelas & Pelatihan Aktif</h3>
+                            <p class="text-xs text-slate-400">Pilih nama ruang dari dropdown (lantai otomatis menyesuaikan) dan tentukan arah petunjuknya.</p>
+                        </div>
+                        <button onclick="addRoomEntry()" class="px-4 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/40 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            <span>Tambah Ruang Aktif</span>
+                        </button>
+                    </div>
+
+                    <!-- List Form Ruang -->
+                    <div id="roomFormsContainer" class="space-y-4">
+                        <!-- Form item per ruang dirender JS -->
+                    </div>
+                </div>
+
+                <hr class="border-cyan-500/20">
+
+                <!-- Bagian 2: Running Text -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wider">2. Isi Teks Berjalan (Running Text)</h3>
+                        <div class="flex items-center gap-2">
+                            <label for="marqueeSpeedSelect" class="text-xs text-slate-300 font-medium">Kecepatan:</label>
+                            <select id="marqueeSpeedSelect" class="bg-navy-950 border border-cyan-500/30 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-cyan-400">
+                                <option value="38">Lambat</option>
+                                <option value="28" selected>Normal</option>
+                                <option value="18">Cepat</option>
+                            </select>
+                        </div>
+                    </div>
+                    <textarea id="runningTextInput" rows="2" class="w-full bg-navy-950/90 border border-cyan-500/30 rounded-xl p-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" placeholder="Masukkan pengumuman yang akan berjalan di bagian bawah layar..."></textarea>
+                </div>
+
+                <hr class="border-cyan-500/20">
+
+                <!-- Bagian 3: Lokasi Cuaca & Opsi Tampilan -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wider">3. Lokasi Cuaca (Weather)</h3>
+                        <div class="flex gap-2">
+                            <input type="text" id="weatherCityInput" class="flex-1 bg-navy-950/90 border border-cyan-500/30 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400" placeholder="Contoh: Yogyakarta, Medan, Surabaya">
+                            <button onclick="detectUserLocation()" title="Deteksi Lokasi GPS Otomatis" class="px-3.5 py-2.5 rounded-xl bg-blue-600/25 hover:bg-blue-600/40 text-cyan-300 border border-cyan-400/30 text-xs font-semibold flex items-center gap-1.5 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <span>GPS</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wider">4. Akses Cepat Pengaturan</h3>
+                        <div class="p-3.5 rounded-xl bg-navy-950/80 border border-cyan-500/30 flex items-center justify-between gap-3">
+                            <div>
+                                <div class="text-sm font-bold text-white">Tombol "Atur Ruangan" Selalu Aktif</div>
+                                <div class="text-xs text-slate-300 mt-0.5">Tampil jelas di pojok kanan atas layar atau tekan tombol <kbd class="px-1.5 py-0.5 bg-slate-800 border border-cyan-500/40 rounded text-cyan-300 font-bold">S</kbd> pada keyboard.</div>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-extrabold uppercase shrink-0">Aktif</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-cyan-500/20 bg-navy-900/95 flex flex-wrap items-center justify-between gap-3">
+                <button onclick="resetToDefault()" class="px-4 py-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 text-xs sm:text-sm font-semibold transition">
+                    Reset Default
+                </button>
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleSettingsModal(false)" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-semibold transition">
+                        Batal
+                    </button>
+                    <button onclick="saveSettings()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 text-xs sm:text-sm font-extrabold shadow-[0_0_20px_rgba(0,240,255,0.35)] transition">
+                        Simpan & Terapkan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification (Pengganti alert) -->
+    <div id="toastNotification" class="fixed bottom-20 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="tech-glass border-cyan-400/60 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+            <span id="toastMessage" class="text-sm font-semibold text-white">Pengaturan berhasil disimpan!</span>
+        </div>
+    </div>
+
+    <script>
+        // ==================== DATA PRESET RUANG KELAS PT LPP AGRO NUSANTARA ====================
+        const ROOM_PRESETS = [
+            { name: "RUANG MILLENNIAL", floor: "LANTAI 2" },
+            { name: "RUANG ENTHUSIASTIC", floor: "LANTAI 2" },
+            { name: "RUANG VISIONARY", floor: "LANTAI 2" },
+            { name: "RUANG TRANSFORMATION", floor: "LANTAI 2" },
+            { name: "RUANG INNOVATION", floor: "LANTAI 3" },
+            { name: "RUANG CREATIVITY", floor: "LANTAI 3" },
+            { name: "RUANG ASESMEN", floor: "LANTAI 1" }
+        ];
+
+        // Daftar Pilihan Arah Ruang Kelas
+        const DIRECTION_OPTIONS = [
+            { id: "straight", label: "Lurus / Terus ke Depan", defaultSub: "Ikuti koridor utama lurus ke depan" },
+            { id: "here", label: "Di Depan Anda (Lokasi Tepat di Sini)", defaultSub: "Anda telah berada di area ruang pelatihan tujuan" },
+            { id: "left", label: "Belok Kiri", defaultSub: "Belok kiri di persimpangan koridor" },
+            { id: "right", label: "Belok Kanan", defaultSub: "Belok kanan di persimpangan koridor" },
+            { id: "up_left", label: "Serong Kiri / Tangga Kiri", defaultSub: "Naik tangga / lift sebelah kiri" },
+            { id: "up_right", label: "Serong Kanan / Tangga Kanan", defaultSub: "Naik tangga / lift sebelah kanan" },
+            { id: "stairs_up", label: "Naik Tangga / Lift ke Lantai Atas", defaultSub: "Gunakan lift atau tangga menuju lantai tujuan" },
+            { id: "stairs_down", label: "Turun Tangga / Lift ke Lantai 1", defaultSub: "Turun melalui lift atau tangga utama menuju Lantai 1" }
+        ];
+
+        // Preset Cepat Nama Pelatihan PT LPP Agro Nusantara
+        const TRAINING_PRESETS = [
+            "LEADERSHIP & AGRO-INDUSTRY DIGITAL TRANSFORMATION",
+            "STRATEGIC PLANTATION MANAGEMENT & SUSTAINABILITY",
+            "ASESMEN KOMPETENSI CALON PEMIMPIN PERKEBUNAN",
+            "OPERATIONAL EXCELLENCE & SMART FARMING TECHNOLOGY",
+            "MANAJEMEN RISIKO & TATA KELOLA PERUSAHAAN (GCG)"
+        ];
+
+        // State Awal Aplikasi
+        const DEFAULT_STATE = {
+            rooms: [
+                {
+                    id: "room-1",
+                    roomName: "RUANG MILLENNIAL",
+                    floor: "LANTAI 2",
+                    trainingName: "LEADERSHIP & AGRO-INDUSTRY DIGITAL TRANSFORMATION PROGRAM",
+                    direction: "up_right",
+                    directionNote: "Naik Lift / Tangga Utama menuju Lantai 2 — Sayap Kanan"
+                },
+                {
+                    id: "room-2",
+                    roomName: "RUANG INNOVATION",
+                    floor: "LANTAI 3",
+                    trainingName: "STRATEGIC PLANTATION MANAGEMENT & SUSTAINABILITY WORKSHOP",
+                    direction: "stairs_up",
+                    directionNote: "Gunakan Lift Utama menuju Lantai 3 — Koridor Utara"
+                }
+            ],
+            runningText: "SELAMAT DATANG DI PT LPP AGRO NUSANTARA • HARAP MENGISI DAFTAR HADIR SEBELUM MEMASUKI RUANG PELATIHAN • JAGA KEBERSIHAN, KETERTIBAN, DAN KESELAMATAN DI LINGKUNGAN KAMPUS • TERIMA KASIH.",
+            marqueeSpeed: 28,
+            weatherCity: "Yogyakarta"
+        };
+
+        let appState = loadState();
+        let tempRooms = [];
+
+        // ==================== MANAJEMEN STATE (LOCALSTORAGE) ====================
+        function loadState() {
+            try {
+                const saved = localStorage.getItem("lpp_agro_signage_state_v1");
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    return { ...DEFAULT_STATE, ...parsed };
+                }
+            } catch (e) {
+                console.warn("Gagal memuat state dari localStorage:", e);
+            }
+            return JSON.parse(JSON.stringify(DEFAULT_STATE));
+        }
+
+        function persistState() {
+            try {
+                localStorage.setItem("lpp_agro_signage_state_v1", JSON.stringify(appState));
+            } catch (e) {
+                console.warn("Gagal menyimpan state:", e);
+            }
+        }
+
+        // ==================== JAM & TANGGAL REAL-TIME ====================
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format Jam HH:MM:SS
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('liveClock').textContent = `${hours}:${minutes}:${seconds}`;
+
+            // Format Tanggal Bahasa Indonesia
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
+            const dayName = days[now.getDay()];
+            const dayNum = now.getDate();
+            const monthName = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            document.getElementById('liveDate').textContent = `${dayName}, ${dayNum} ${monthName} ${year}`;
+        }
+
+        // ==================== SVG PANAH PENUNJUK ARAH ====================
+        function getDirectionArrowSVG(directionId) {
+            const commonAttrs = `class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-cyan-300 animate-arrow-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"`;
+            
+            switch (directionId) {
+                case 'left':
+                    return `<svg ${commonAttrs}>
+                        <path d="M52 32H14M14 32L30 16M14 32L30 48" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`;
+                case 'right':
+                    return `<svg ${commonAttrs}>
+                        <path d="M12 32H50M50 32L34 16M50 32L34 48" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`;
+                case 'up_left':
+                    return `<svg ${commonAttrs}>
+                        <path d="M46 46L18 18M18 18H42M18 18V42" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`;
+                case 'up_right':
+                    return `<svg ${commonAttrs}>
+                        <path d="M18 46L46 18M46 18H22M46 18V42" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`;
+                case 'stairs_up':
+                    return `<svg ${commonAttrs}>
+                        <path d="M12 48H24V36H36V24H52" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 26L38 10M38 10H26M38 10V22" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`;
+                case 'stairs_down':
+                    return `<svg ${commonAttrs}>
+                        <path d="M12 20H24V32H36V44H52" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M26 36L42 52M42 52H30M42 52V40" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`;
+                case 'here':
+                    return `<svg ${commonAttrs}>
+                        <circle cx="32" cy="32" r="20" stroke="#38bdf8" stroke-width="4" stroke-dasharray="6 4"/>
+                        <circle cx="32" cy="32" r="9" fill="currentColor"/>
+                        <path d="M32 6V12M32 52V58M6 32H12M52 32H58" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+                    </svg>`;
+                case 'straight':
+                default:
+                    return `<svg ${commonAttrs}>
+                        <path d="M32 52V14M32 14L16 30M32 14L48 30" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`;
+            }
+        }
+
+        function getDirectionLabel(directionId) {
+            const found = DIRECTION_OPTIONS.find(d => d.id === directionId);
+            return found ? found.label : "Lurus ke Depan";
+        }
+
+        // ==================== RENDER UTAMA DISPLAY RUANG KELAS ====================
+        function renderDisplay() {
+            const container = document.getElementById('roomsDisplayContainer');
+            const rooms = appState.rooms;
+
+            // Atur grid responsif berdasarkan jumlah ruang aktif
+            if (rooms.length === 1) {
+                container.className = "w-full max-w-[1550px] mx-auto grid grid-cols-1 gap-6";
+            } else if (rooms.length === 2) {
+                container.className = "w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6";
+            } else {
+                container.className = "w-full max-w-[1650px] mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5";
+            }
+
+            const isSingle = rooms.length === 1;
+
+            container.innerHTML = rooms.map((room, index) => {
+                const floorBadge = room.floor && room.floor.trim() !== "" 
+                    ? `<span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-cyan-400/20 border border-cyan-300/50 text-cyan-200 font-extrabold text-sm sm:text-base tracking-wider uppercase shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+                        <svg class="w-4 h-4 text-cyan-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                        ${escapeHtml(room.floor)}
+                       </span>`
+                    : '';
+
+                return `
+                <article class="tech-glass-highlight corner-accent rounded-3xl ${isSingle ? 'p-6 sm:p-10 lg:p-12' : 'p-5 sm:p-7'} flex flex-col justify-between gap-6 transition-all duration-300">
+                    
+                    <!-- Baris Atas: Label Ruang Kelas & Badge Lantai -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-cyan-400/20 pb-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="px-3 py-1 rounded-lg bg-blue-600/30 border border-blue-400/40 text-sky-200 text-xs sm:text-sm font-bold tracking-widest uppercase">
+                                RUANG KELAS #${index + 1}
+                            </span>
+                            ${floorBadge}
+                        </div>
+                        <div class="flex items-center gap-2 text-emerald-400 text-xs sm:text-sm font-bold uppercase tracking-wider">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>SEDANG BERLANGSUNG</span>
+                        </div>
+                    </div>
+
+                    <!-- Bagian Tengah: Nama Ruang & Nama Pelatihan -->
+                    <div class="space-y-4 my-auto">
+                        <div>
+                            <div class="text-xs sm:text-sm font-bold text-cyan-400 uppercase tracking-widest mb-1">
+                                LOKASI RUANGAN
+                            </div>
+                            <h2 class="${isSingle ? 'text-4xl sm:text-5xl lg:text-6xl' : 'text-2xl sm:text-3xl lg:text-4xl'} font-extrabold text-white tracking-tight leading-tight">
+                                ${escapeHtml(room.roomName)}
+                            </h2>
+                        </div>
+
+                        <div class="p-4 sm:p-5 rounded-2xl bg-navy-950/75 border border-sky-400/25">
+                            <div class="text-xs sm:text-sm font-bold text-sky-400 uppercase tracking-widest mb-1.5 flex items-center gap-2">
+                                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                                <span>NAMA PELATIHAN / KEGIATAN</span>
+                            </div>
+                            <p class="${isSingle ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-lg sm:text-xl lg:text-2xl'} font-bold text-cyan-50 leading-snug">
+                                ${escapeHtml(room.trainingName)}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bagian Bawah: Penunjuk Arah Ruang Kelas -->
+                    <div class="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-blue-950/60 to-navy-900/80 border border-cyan-400/40">
+                        <div class="space-y-1">
+                            <div class="text-xs font-extrabold text-cyan-400 uppercase tracking-widest">
+                                PETUNJUK ARAH RUANG
+                            </div>
+                            <div class="${isSingle ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl sm:text-2xl'} font-extrabold text-white">
+                                ${escapeHtml(getDirectionLabel(room.direction))}
+                            </div>
+                            ${room.directionNote ? `<p class="text-xs sm:text-sm lg:text-base text-cyan-200/90 font-medium">${escapeHtml(room.directionNote)}</p>` : ''}
+                        </div>
+
+                        <!-- Kotak Panah Animasi -->
+                        <div class="arrow-glow-box shrink-0 ${isSingle ? 'w-28 h-28 sm:w-32 sm:h-32' : 'w-20 h-20 sm:w-24 sm:h-24'} rounded-2xl flex items-center justify-center">
+                            ${getDirectionArrowSVG(room.direction)}
+                        </div>
+                    </div>
+
+                </article>
+                `;
+            }).join('');
+
+            // Update Running Text
+            const marqueeTrack = document.getElementById('marqueeTrack');
+            const text = appState.runningText || "SELAMAT DATANG DI PT LPP AGRO NUSANTARA";
+            marqueeTrack.style.setProperty('--marquee-duration', `${appState.marqueeSpeed || 28}s`);
+            // Duplikasi teks agar looping berjalan mulus tanpa putus
+            const separator = `<span class="mx-8 text-cyan-400 font-black">❖</span>`;
+            marqueeTrack.innerHTML = `<span>${escapeHtml(text)}</span>${separator}<span>${escapeHtml(text)}</span>${separator}`;
+        }
+
+        // ==================== WEATHER API (OPEN-METEO GEOCODING + FORECAST) ====================
+        async function fetchWeatherByCity(cityName) {
+            const locEl = document.getElementById('weatherLocation');
+            const tempEl = document.getElementById('weatherTemp');
+            const humEl = document.getElementById('weatherHumidity');
+            const descEl = document.getElementById('weatherDesc');
+
+            try {
+                locEl.textContent = cityName;
+                // 1. Geocoding nama kota ke koordinat
+                const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=1&language=id&format=json`);
+                const geoData = await geoRes.json();
+
+                if (!geoData.results || geoData.results.length === 0) {
+                    throw new Error("Kota tidak ditemukan");
+                }
+
+                const place = geoData.results[0];
+                locEl.textContent = place.name;
+
+                // 2. Fetch cuaca aktual dari Open-Meteo
+                await fetchWeatherByCoords(place.latitude, place.longitude, place.name);
+            } catch (err) {
+                console.warn("Menggunakan cuaca fallback:", err);
+                // Fallback cuaca realistis jika offline
+                tempEl.textContent = "29°C";
+                humEl.textContent = "RH 74%";
+                descEl.textContent = "Cerah Berawan";
+            }
+        }
+
+        async function fetchWeatherByCoords(lat, lon, displayName = null) {
+            try {
+                const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,is_day&timezone=auto`);
+                const data = await weatherRes.json();
+
+                if (data && data.current) {
+                    const temp = Math.round(data.current.temperature_2m);
+                    const humidity = data.current.relative_humidity_2m;
+                    const code = data.current.weather_code;
+                    const isDay = data.current.is_day;
+
+                    if (displayName) {
+                        document.getElementById('weatherLocation').textContent = displayName;
+                    }
+                    document.getElementById('weatherTemp').textContent = `${temp}°C`;
+                    document.getElementById('weatherHumidity').textContent = `RH ${humidity}%`;
+                    
+                    const weatherInfo = mapWmoWeatherCode(code, isDay);
+                    document.getElementById('weatherDesc').textContent = weatherInfo.desc;
+                    document.getElementById('weatherIconContainer').innerHTML = weatherInfo.icon;
+                }
+            } catch (e) {
+                console.warn("Gagal mengambil detail cuaca:", e);
+            }
+        }
+
+        function mapWmoWeatherCode(code, isDay) {
+            // WMO Weather interpretation codes
+            if (code === 0) {
+                return {
+                    desc: isDay ? "Cerah" : "Cerah Malam",
+                    icon: isDay 
+                        ? `<svg class="w-8 h-8 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor" fill-opacity="0.35"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>`
+                        : `<svg class="w-8 h-8 text-cyan-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>`
+                };
+            }
+            if (code >= 1 && code <= 3) {
+                return {
+                    desc: "Cerah Berawan",
+                    icon: `<svg class="w-8 h-8 text-sky-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>`
+                };
+            }
+            if (code >= 45 && code <= 48) {
+                return {
+                    desc: "Berkabut",
+                    icon: `<svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 14h16M4 18h12M6 10h14"/></svg>`
+                };
+            }
+            if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) {
+                return {
+                    desc: "Hujan Ringan / Sedang",
+                    icon: `<svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 16.2A4.5 4.5 0 0017.5 8h-1.8A7 7 0 104 14.9M16 14v6m-4-4v6m-4-6v6"/></svg>`
+                };
+            }
+            if (code >= 95) {
+                return {
+                    desc: "Hujan Petir",
+                    icon: `<svg class="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`
+                };
+            }
+            return {
+                desc: "Berawan",
+                icon: `<svg class="w-8 h-8 text-sky-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>`
+            };
+        }
+
+        function detectUserLocation() {
+            if (!navigator.geolocation) {
+                showToast("Browser tidak mendukung deteksi lokasi GPS.");
+                return;
+            }
+            showToast("Mendeteksi lokasi perangkat...");
+            navigator.geolocation.getCurrentPosition(
+                async (pos) => {
+                    const { latitude, longitude } = pos.coords;
+                    try {
+                        const revRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+                        const revData = await revRes.json();
+                        const city = revData.address?.city || revData.address?.town || revData.address?.county || "Lokasi Saat Ini";
+                        document.getElementById('weatherCityInput').value = city;
+                        await fetchWeatherByCoords(latitude, longitude, city);
+                        showToast(`Lokasi terdeteksi: ${city}`);
+                    } catch (e) {
+                        await fetchWeatherByCoords(latitude, longitude, "Lokasi GPS");
+                    }
+                },
+                () => {
+                    showToast("Izin lokasi ditolak. Menggunakan nama kota manual.");
+                }
+            );
+        }
+
+        // ==================== MODAL PENGATURAN INTERAKTIF ====================
+        function toggleSettingsModal(show) {
+            const modal = document.getElementById('settingsModal');
+            if (show) {
+                // Salin state ke temporary agar bisa diedit sebelum disimpan
+                tempRooms = JSON.parse(JSON.stringify(appState.rooms));
+                document.getElementById('runningTextInput').value = appState.runningText;
+                document.getElementById('marqueeSpeedSelect').value = String(appState.marqueeSpeed || 28);
+                document.getElementById('weatherCityInput').value = appState.weatherCity || "Yogyakarta";
+
+                renderRoomForms();
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function renderRoomForms() {
+            const container = document.getElementById('roomFormsContainer');
+            container.innerHTML = tempRooms.map((room, idx) => {
+                // Dropdown Pilihan Nama Ruang
+                const roomOptionsHtml = ROOM_PRESETS.map(preset => {
+                    const isSelected = preset.name === room.roomName ? 'selected' : '';
+                    const labelText = preset.floor ? `${preset.name} — (${preset.floor})` : preset.name;
+                    return `<option value="${preset.name}" ${isSelected}>${labelText}</option>`;
+                }).join('');
+
+                // Dropdown Pilihan Arah Ruang
+                const dirOptionsHtml = DIRECTION_OPTIONS.map(dir => {
+                    const isSelected = dir.id === room.direction ? 'selected' : '';
+                    return `<option value="${dir.id}" ${isSelected}>${dir.label}</option>`;
+                }).join('');
+
+                return `
+                <div class="p-4 sm:p-5 rounded-2xl bg-navy-950/85 border border-cyan-500/30 space-y-4">
+                    <div class="flex items-center justify-between border-b border-cyan-500/20 pb-2.5">
+                        <span class="text-xs sm:text-sm font-extrabold text-cyan-300 uppercase tracking-wider">
+                            Konfigurasi Ruang Kelas #${idx + 1}
+                        </span>
+                        ${tempRooms.length > 1 ? `
+                        <button type="button" onclick="removeRoomEntry(${idx})" class="px-2.5 py-1 rounded-lg bg-rose-500/15 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 text-xs font-bold transition">
+                            Hapus Ruang
+                        </button>` : ''}
+                    </div>
+
+                    <!-- Pilihan Dropdown Nama Ruang & Keterangan Lantai -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Pilih Nama Ruang Kelas</label>
+                            <select onchange="handleRoomDropdownChange(${idx}, this.value)" class="w-full bg-navy-900 border border-cyan-500/35 rounded-xl px-3.5 py-2.5 text-sm font-bold text-white focus:outline-none focus:border-cyan-400">
+                                ${roomOptionsHtml}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Keterangan Lantai</label>
+                            <input type="text" value="${escapeHtml(room.floor || '')}" oninput="tempRooms[${idx}].floor = this.value; syncLivePreview();" placeholder="Contoh: LANTAI 2" class="w-full bg-navy-900 border border-cyan-500/35 rounded-xl px-3.5 py-2.5 text-sm font-bold text-cyan-300 focus:outline-none focus:border-cyan-400">
+                        </div>
+                    </div>
+
+                    <!-- Nama Pelatihan + Preset Cepat -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Nama Pelatihan / Kegiatan</label>
+                        <input type="text" id="trainingInput_${idx}" value="${escapeHtml(room.trainingName)}" oninput="handleTrainingInput(${idx}, this.value)" placeholder="Masukkan judul pelatihan..." class="w-full bg-navy-900 border border-cyan-500/35 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-white focus:outline-none focus:border-cyan-400">
+                        <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                            <span class="text-[11px] font-semibold text-cyan-400 mr-1">Preset Cepat:</span>
+                            ${TRAINING_PRESETS.map((preset, pIdx) => `
+                                <button type="button" onclick="applyTrainingPreset(${idx}, ${pIdx})" class="px-2.5 py-1 rounded-lg bg-blue-900/50 hover:bg-cyan-500/25 text-sky-200 hover:text-cyan-200 border border-sky-400/25 text-[11px] font-medium transition truncate max-w-[230px]" title="${escapeHtml(preset)}">
+                                    ${escapeHtml(preset)}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Arah Ruang Kelas -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Arah Panah Ruang</label>
+                            <select onchange="handleDirectionChange(${idx}, this.value)" class="w-full bg-navy-900 border border-cyan-500/35 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-white focus:outline-none focus:border-cyan-400">
+                                ${dirOptionsHtml}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Keterangan Detail Arah</label>
+                            <input type="text" value="${escapeHtml(room.directionNote || '')}" oninput="handleDirectionNoteInput(${idx}, this.value)" placeholder="Contoh: Naik tangga sebelah kiri ke Lantai 2" class="w-full bg-navy-900 border border-cyan-500/35 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-cyan-400">
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function syncLivePreview() {
+            appState.rooms = JSON.parse(JSON.stringify(tempRooms));
+            renderDisplay();
+        }
+
+        function handleTrainingInput(index, val) {
+            tempRooms[index].trainingName = val;
+            syncLivePreview();
+        }
+
+        function applyTrainingPreset(index, presetIdx) {
+            const chosen = TRAINING_PRESETS[presetIdx];
+            if (!chosen) return;
+            tempRooms[index].trainingName = chosen;
+            const inputEl = document.getElementById(`trainingInput_${index}`);
+            if (inputEl) inputEl.value = chosen;
+            syncLivePreview();
+        }
+
+        function handleDirectionNoteInput(index, val) {
+            tempRooms[index].directionNote = val;
+            syncLivePreview();
+        }
+
+        function handleRoomDropdownChange(index, selectedRoomName) {
+            const preset = ROOM_PRESETS.find(p => p.name === selectedRoomName);
+            tempRooms[index].roomName = selectedRoomName;
+            if (preset) {
+                tempRooms[index].floor = preset.floor;
+            }
+            renderRoomForms();
+            syncLivePreview();
+        }
+
+        function handleDirectionChange(index, selectedDirId) {
+            tempRooms[index].direction = selectedDirId;
+            const dirObj = DIRECTION_OPTIONS.find(d => d.id === selectedDirId);
+            if (dirObj) {
+                const floorText = (selectedDirId !== 'here' && selectedDirId !== 'stairs_down' && tempRooms[index].floor) 
+                    ? ` menuju ${tempRooms[index].floor}` 
+                    : '';
+                tempRooms[index].directionNote = `${dirObj.defaultSub}${floorText}`;
+            }
+            renderRoomForms();
+            syncLivePreview();
+        }
+
+        function addRoomEntry() {
+            if (tempRooms.length >= 6) {
+                showToast("Maksimal 6 ruang kelas aktif sekaligus agar tetap terbaca jelas.");
+                return;
+            }
+            tempRooms.push({
+                id: "room-" + Date.now(),
+                roomName: "RUANG ENTHUSIASTIC",
+                floor: "LANTAI 2",
+                trainingName: "PELATIHAN PENGEMBANGAN KOMPETENSI SDM AGRO",
+                direction: "up_left",
+                directionNote: "Naik tangga / lift sebelah kiri menuju LANTAI 2"
+            });
+            renderRoomForms();
+            syncLivePreview();
+        }
+
+        function removeRoomEntry(index) {
+            if (tempRooms.length <= 1) return;
+            tempRooms.splice(index, 1);
+            renderRoomForms();
+            syncLivePreview();
+        }
+
+        function saveSettings() {
+            appState.rooms = tempRooms.map(r => ({
+                ...r,
+                trainingName: r.trainingName.trim() || "PELATIHAN PT LPP AGRO NUSANTARA"
+            }));
+            appState.runningText = document.getElementById('runningTextInput').value.trim() || DEFAULT_STATE.runningText;
+            appState.marqueeSpeed = parseInt(document.getElementById('marqueeSpeedSelect').value, 10) || 28;
+
+            const newCity = document.getElementById('weatherCityInput').value.trim() || "Yogyakarta";
+            const cityChanged = newCity.toLowerCase() !== (appState.weatherCity || "").toLowerCase();
+            appState.weatherCity = newCity;
+
+            persistState();
+            renderDisplay();
+            if (cityChanged) {
+                fetchWeatherByCity(newCity);
+            }
+
+            toggleSettingsModal(false);
+            showToast("Papan informasi berhasil diperbarui!");
+        }
+
+        function resetToDefault() {
+            appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+            persistState();
+            renderDisplay();
+            fetchWeatherByCity(appState.weatherCity);
+            toggleSettingsModal(false);
+            showToast("Pengaturan dikembalikan ke standar awal.");
+        }
+
+        // ==================== FULLSCREEN & KEYBOARD SHORTCUT ====================
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {
+                    showToast("Gunakan tombol F11 pada keyboard untuk layar penuh.");
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            // Tekan tombol 'S' di luar input/textarea untuk membuka/menutup pengaturan
+            const tag = document.activeElement.tagName.toLowerCase();
+            if (tag !== 'input' && tag !== 'textarea' && tag !== 'select') {
+                if (e.key === 's' || e.key === 'S') {
+                    const modal = document.getElementById('settingsModal');
+                    const isHidden = modal.classList.contains('hidden');
+                    toggleSettingsModal(isHidden);
+                }
+            }
+        });
+
+        // ==================== UTILITAS ====================
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        let toastTimer;
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('translate-y-10', 'opacity-0');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+            }, 3200);
+        }
+
+        // ==================== INISIALISASI APLIKASI ====================
+        window.addEventListener('DOMContentLoaded', () => {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            renderDisplay();
+            fetchWeatherByCity(appState.weatherCity || "Yogyakarta");
+
+            // Perbarui cuaca setiap 15 menit secara otomatis
+            setInterval(() => {
+                fetchWeatherByCity(appState.weatherCity || "Yogyakarta");
+            }, 15 * 60 * 1000);
+        });
+    </script>
+</body>
+</html>
